@@ -1,2 +1,4 @@
 # IAGptImagemGeratort
-:japanese_goblin: project under construction :japanese_goblin:
+# :muscle: :muscle:
+# Project under construction 
+# :muscle: :muscle:
