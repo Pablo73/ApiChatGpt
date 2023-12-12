@@ -6,20 +6,22 @@ dotenv.config();
 const app = express();
 
 app.get('/', async (req, res) => {
-    const openai = new OpenAI({
-        key: process.env.OPENAI_API_KEY,
-        organization: 'org-3yThFQYfStDZnjLBPzK7OBhZ',
-    });
 
-    const response = await openai.createImage({
-        engine: "text-davinci-003",
+    // const openai = new OpenAI({
+    //     key: process.env.OPENAI_API_KEY,
+    //     organization: 'org-3yThFQYfStDZnjLBPzK7OBhZ',
+    // });
+
+    const openai = new OpenAI();
+
+    const image = await openai.images.generate({
+        model: "dall-e-3",
         prompt: "a white siamese cat",
-        max_tokens: 50,
     });
 
-    const imageUrl = response.choices[0].text.trim();
+    console.log(image.data);
 
-    res.send(imageUrl);
+    res.send(image.data);
 });
 
 app.listen(4001, () => {
