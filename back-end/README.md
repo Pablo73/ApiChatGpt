@@ -1,2 +1,4 @@
-# ApiChatGpt
-# project under construction
+# IAGptImageGenerator
+# :muscle: :muscle:
+# Project under construction 
+# :muscle: :muscle:
