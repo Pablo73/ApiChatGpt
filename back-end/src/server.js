@@ -5,7 +5,9 @@ dotenv.config();
 
 const app = express();
 
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
+
+    const { prompt } = req.query;	
 
     // const openai = new OpenAI({
     //     key: process.env.OPENAI_API_KEY,
@@ -16,7 +18,7 @@ app.get('/', async (req, res) => {
 
     const image = await openai.images.generate({
         model: "dall-e-3",
-        prompt: "a white siamese cat",
+        prompt: prompt,
     });
 
     console.log(image.data);
