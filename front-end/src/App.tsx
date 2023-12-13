@@ -33,14 +33,40 @@ function App() {
       console.error('Error when making the request:', error);
     }
   };
+  const handleDownloadClick = () => {
+    if (generatedImage) {
+      const link = document.createElement('a');
+      link.href = generatedImage;
+      link.download = 'imagem_gerada.png';
+
+      link.click();
+
+      document.body.removeChild(link);
+    }
+  };
   return (
-    <div>
+    <div className="container">
       <Header />
-      <Input onInput={ handleInput } />
-      <Button onButtonClick={ handleButtonClick } />
-      {generatedImage && (
-        <img src={ generatedImage } alt="Generated Imagem" />
-      )}
+      <div className="container-input">
+        <Input onInput={ handleInput } />
+        <Button onButtonClick={ handleButtonClick } />
+        {generatedImage && (
+          <>
+            <img
+              src={ generatedImage }
+              alt="Generated Imagem"
+              className="styled-image"
+            />
+            <button
+              onClick={ handleDownloadClick }
+              className="styled-button"
+            >
+              Download
+
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

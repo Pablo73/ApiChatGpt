@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import './input.css';
 
 interface InputProps {
   onInput: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -10,6 +11,7 @@ function Input({ onInput }: InputProps) {
       type="text"
       name="input-prompt"
       className="input"
+      placeholder="Prompt"
       onChange={ onInput }
     />
   );
