@@ -1,40 +1,47 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './vite.svg';
+import { ChangeEvent, useState } from 'react';
 import './App.css';
+import Header from './components/header/header';
+import Input from './components/input/input';
+import Button from './components/button/button';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [generatedImage, setGeneratedImage] = useState('');
 
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleButtonClick = async () => {
+    try {
+      const response = await fetch('https://api.openai.com/v1/images/generations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          prompt: inputValue,
+        }),
+      });
+
+      const data = await response.json();
+      console.log('Response API:', data);
+
+      setGeneratedImage(data.generated_image);
+    } catch (error) {
+      console.error('Error when making the request:', error);
+    }
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Header />
+      <Input onInput={ handleInput } />
+      <Button onButtonClick={ handleButtonClick } />
+      {generatedImage && (
+        <img src={ generatedImage } alt="Generated Imagem" />
+      )}
+    </div>
   );
 }
 
