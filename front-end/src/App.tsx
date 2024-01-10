@@ -26,9 +26,9 @@ function App() {
       });
 
       const data = await response.json();
-      console.log('Response API:', data);
+      console.log('Response API:', data.data[0].url);
 
-      setGeneratedImage(data.generated_image);
+      setGeneratedImage(data.data[0].url);
     } catch (error) {
       console.error('Error when making the request:', error);
     }

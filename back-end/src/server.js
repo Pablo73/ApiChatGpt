@@ -10,8 +10,7 @@ dotenv.config();
 const app = express();
 
 const openai = new OpenAI({
-    key: process.env.OPENAI_API_KEY,
-    engine: 'gpt-4-vision-preview',
+    key: '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'
 });
 
 function encodeImage(imagePath) {
@@ -22,6 +21,8 @@ function encodeImage(imagePath) {
 const imagePath = path.join('ticket.jpeg');
 
 const base64Image = encodeImage(imagePath);
+
+console
 
 async function main() {
     const response = await openai.chat.completions.create({
