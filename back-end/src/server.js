@@ -3,19 +3,18 @@ import OpenAI from "openai";
 import * as dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-import base64 from 'base-64';
 
 dotenv.config();
 
 const app = express();
 
 const openai = new OpenAI({
-    key: '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'
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 function encodeImage(imagePath) {
-    const imageContent = fs.readFileSync(imagePath, { encoding: 'base64' });
-    return base64.encode(imageContent);
+    const imageContent = fs.readFileSync(imagePath);
+    return imageContent.toString('base64');
 }
 
 const imagePath = path.join('ticket.jpeg');
@@ -41,7 +40,7 @@ async function main() {
                 ],
             },
         ],
-        max_tokens: 300,
+        max_tokens: 4096,
     });
 
     console.log(response.choices[0]);
