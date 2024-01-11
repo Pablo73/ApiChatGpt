@@ -24,4 +24,4 @@ Para fazer funcionar os exemplos, você precisa ter uma chave da API do ChatGPT.
 - Execute o comando npm install para instalar as dependências.
 - Execute o comando npm run dev para iniciar o servidor back-end.
 - Abra o navegador e acesse http://localhost:4001.
-- Execute o comando npm run dev para iniciar o servidor do front-end.
+- Execute o comando npx run dev para iniciar o servidor do front-end.
