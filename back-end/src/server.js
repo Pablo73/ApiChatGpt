@@ -21,8 +21,6 @@ const imagePath = path.join('ticket.jpeg');
 
 const base64Image = encodeImage(imagePath);
 
-console
-
 async function main() {
     const response = await openai.chat.completions.create({
         model: "gpt-4-vision-preview",
